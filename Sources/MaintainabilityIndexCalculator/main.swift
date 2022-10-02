@@ -2,11 +2,7 @@ import Accelerate
 import SwiftSyntax
 import SwiftSyntaxParser
 
-try CommandLine.arguments.forEach { argument in
-    if argument == ".build/arm64-apple-macosx/debug/MaintainabilityIndexCalculator" {
-        // Unnecessary arguments are passed first, so return here.
-        return
-    }
+try CommandLine.arguments.dropFirst().forEach { argument in
 
     let url = URL(fileURLWithPath: argument)
     let fileData = try Data(contentsOf: url)
